@@ -1,3 +1,7 @@
+from Agregar_stock import agregar_autoparte
+from Modificar_stock import modificar_autoparte
+from eliminarap import eliminar_autoparte
+from Consulta_total import mostrar_autopartes
 
 print("⏤"*120)
 print(" "*45,"BIENVENIDO AL SISTEMA DE CONTROL DE STOCK DE AUTOPARTES PARTSCTRL\n")
