@@ -1,4 +1,4 @@
-if opcion_categoria == 4:
+if opcion_gestion == 4:
     print("\n========== INVENTARIO COMPLETO ==========")
 
     for autoparte in matriz:
