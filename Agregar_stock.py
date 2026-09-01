@@ -1,9 +1,12 @@
-
 import random
 
 
 def datos(rango_minimo, rango_maximo, lista):
     autoparte = input("Ingrese la autoparte que quiere agregar: ")
+    while len(autoparte)<4:
+        print('autoparte invalida')
+        autoparte = input("Ingrese la autoparte que quiere agregar: ")
+
 
     codigo = random.randint(rango_minimo, rango_maximo)
 
@@ -13,7 +16,13 @@ def datos(rango_minimo, rango_maximo, lista):
         codigo = random.randint(rango_minimo, rango_maximo)
 
     marca = input("Ingrese la marca de la autoparte: ")
+    while len(marca)<3:
+        print('marca invalida')
+        marca = input("Ingrese la marca de la autoparte: ")
     modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
+    while len(modelo)<3:
+        print('modelo ivalido')
+        modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
 
     precio = float(input("Ingrese el precio de la autoparte: "))
     while precio < 0:
@@ -23,9 +32,9 @@ def datos(rango_minimo, rango_maximo, lista):
     while stock < 0:
         stock = int(input("Ingrese un stock válido: "))
 
-    stock_minimo = int(input("Indique el stock mínimo del producto: "))
-    while stock_minimo < 0:
-        stock_minimo = int(input("Ingrese un stock mínimo válido: "))
+    stock_minimo = int(input(f"Indique el stock mínimo del producto (mayor o igual a {stock}): "))
+    while stock_minimo > stock:
+        stock_minimo = int(input("Ingrese un stock minimo valido:"))
 
     return codigo, autoparte, marca, modelo, stock, precio, stock_minimo
 
@@ -33,6 +42,10 @@ def datos(rango_minimo, rango_maximo, lista):
 def agregar_autoparte(motor,encendido,refrigeracion,suspension):
 
     agregar = input("Ingrese la categoría de producto que quiere agregar: ").lower()
+    while agregar != 'motor' and agregar !='refrigeracion' and agregar != 'encendido' and agregar != 'suspension':
+        print("Categoría no válida.")
+        agregar = input("Ingrese la categoría de producto que quiere agregar: ").lower()
+
 
     if agregar == "motor":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(101, 199, motor)
@@ -50,7 +63,3 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(401, 499, suspension)
         suspension.append(
             ["Suspensión", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
-
-    else:
-        print("Categoría no válida.")
-

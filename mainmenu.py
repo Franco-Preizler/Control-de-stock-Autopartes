@@ -2,7 +2,7 @@ from Agregar_stock import agregar_autoparte
 from Modificar_stock import modificar_autoparte
 from eliminarap import eliminar_autoparte
 from Consulta_total import mostrar_autopartes
-
+from validar_stock_minimo import validar_stock_minimo
 motor = [
     ["Motor", 101, "Filtro de aceite", "BGK", "Volkswagen Polo", 6, 71000, 5],
     ["Motor", 102, "Correa de distribución", "BGK", "Peugeot 208", 7, 40000, 5],
@@ -34,84 +34,63 @@ suspension = [
     ["Suspensión", 404, "Bieleta", "TRW", "Universal", 9, 5700, 5],
     ["Suspensión", 405, "Bujes de suspensión", "TRW", "Universal", 24, 5000, 5]
 ]
+option = "-1"
+while option!=0:
+    print("⏤"*120)
+    print(" "*45,"BIENVENIDO AL SISTEMA DE CONTROL DE STOCK DE AUTOPARTES PARTSCTRL\n")
+    print("⏤"*120)
+    print(""" \nSeleccione las siguientes opciones para comenzar con la carga del sistema\n
+            * Ingrese 1 para registrar nuevas autopartes
+            * Ingrese 2 para modificar informacion de autopartes
+            * Ingrese 3 para eliminar autopartes
+            * Ingrese 4 para mostrar el listado de autopartes
+            * Ingrese 5 para consultar autopartes
+            * Ingrese 6 para ver movimiento de stock de autopartes
+        
+            * Para finalizar ingrese 0 por teclado  """)
 
-print("⏤"*120)
-print(" "*45,"BIENVENIDO AL SISTEMA DE CONTROL DE STOCK DE AUTOPARTES PARTSCTRL\n")
-print("⏤"*120)
-print(""" \nSeleccione las siguientes opciones para comenzar con la carga del sistema\n
-        * Ingrese 1 para registrar nuevas autopartes
-        * Ingrese 2 para modificar informacion de autopartes
-        * Ingrese 3 para eliminar autopartes
-        * Ingrese 4 para mostrar el listado de autopartes
-        * Ingrese 5 para consultar autopartes
-        * Ingrese 6 para ver movimiento de stock de autopartes
+    option = input("\nIngrese la opcion para continuar: ")
+
+    while option != "0" and option != "1" and option != "2" and option != "3" and option != "4" and option != "5" and option != "6":
+        print("\n > La opcion ingresada no es correcta")
+        option = input("\nIngrese un valor correcto entre las opciones (0 a 6) para continuar: ")
+
     
-        * Para finalizar ingrese 0 por teclado  """)
-
-        option = input("\nIngrese la opcion para continuar: ")
-
-        while option != "0" and option != "1" and option != "2" and option != "3" and option != "4" and option != "5" and option != "6":
-            print("\n > La opcion ingresada no es correcta")
-            option = input("\nIngrese un valor correcto entre las opciones (0 a 6) para continuar: ")
-
-        if option == "0":
-            print("\n > Gracias por utilizar el sistema de control de stock de autopartes")
-        elif option == "1":
-            agregar_autoparte(
-            motor,
-            encendido,
-            refrigeracion,
-            suspension
+    if option == "1":
+        agregar_autoparte(
+        motor,
+        encendido,
+        refrigeracion,
+        suspension
         )
 
-        elif option == "2":
-            modificar_autoparte(
-            motor,
-            encendido,
-            refrigeracion,
-            suspension
-        )
-        elif option == "3":
-            eliminar_autoparte(
-            motor,
-            encendido,
-            refrigeracion,
-            suspension
-        )
-        elif option == "4":
-            mostrar_autopartes(
-            motor,
-            encendido,
-            refrigeracion,
-            suspension
-        )
-        elif option == "5":
-            codigo = int(input("Ingrese el código de la autoparte: "))
+    elif option == "2":
+        modificar_autoparte(
+        motor,
+        encendido,
+        refrigeracion,
+        suspension
+    )
+    elif option == "3":
+        eliminar_autoparte(
+        motor,
+        encendido,
+        refrigeracion,
+        suspension
+    )
+    elif option == "4":
+        h=mostrar_autopartes(
+        motor,
+        encendido,
+        refrigeracion,
+        suspension
+    )
+        minimo = validar_stock_minimo(h)
+        
 
-            while codigo < 101 or codigo > 499:
-                print("ERROR - Ingrese un código correctamente")
-                codigo = int(input("Ingrese el código nuevamente: "))
-        
-            if codigo >= 101 and codigo <= 199:
-                encontrada, final = mostrar_info(codigo, motor)
-        
-            elif codigo >= 201 and codigo <= 299:
-                encontrada, final = mostrar_info(codigo, encendido)
-        
-            elif codigo >= 301 and codigo <= 399:
-                encontrada, final = mostrar_info(codigo, refrigeracion)
-        
-            elif codigo >= 401 and codigo <= 499:
-                encontrada, final = mostrar_info(codigo, suspension)
-        
-            if encontrada == True:
-                print("\nAutoparte encontrada:")
-                print(final)
-        
-            else:
-                print("\nProducto no encontrado")
-
-        elif option == "6":
-            movimiento_stock()
-        else:
-            print("\n > La opcion ingresada no es correcta")
+    elif option == "5":
+        consultar_autoparte()
+    elif option == "6":
+        movimiento_stock()
+    else:
+        print("\n > Gracias por utilizar el sistema de control de stock de autopartes")
