@@ -89,7 +89,30 @@ while option!=0:
         
 
     elif option == "5":
-        consultar_autoparte()
+        codigo = int(input("Ingrese el código de la autoparte: "))
+
+    while codigo < 101 or codigo > 499:
+        print("ERROR - Ingrese un código correctamente")
+        codigo = int(input("Ingrese el código nuevamente: "))
+
+    if codigo >= 101 and codigo <= 199:
+        encontrada, final = mostrar_info(codigo, motor)
+
+    elif codigo >= 201 and codigo <= 299:
+        encontrada, final = mostrar_info(codigo, encendido)
+
+    elif codigo >= 301 and codigo <= 399:
+        encontrada, final = mostrar_info(codigo, refrigeracion)
+
+    elif codigo >= 401 and codigo <= 499:
+        encontrada, final = mostrar_info(codigo, suspension)
+
+    if encontrada == True:
+        print("\nAutoparte encontrada:")
+        print(final)
+
+    else:
+        print("\nProducto no encontrado")
     elif option == "6":
         movimiento_stock()
     else:
