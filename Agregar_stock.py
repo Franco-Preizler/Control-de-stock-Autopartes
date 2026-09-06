@@ -1,3 +1,5 @@
+from registro_movimientos import registrar_movimiento
+
 import random
 
 
@@ -49,17 +51,25 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
 
     if agregar == "motor":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(101, 199, motor)
-        motor.append(["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        nuevo = ["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo]
+        motor.append(nuevo)
+        registrar_movimiento("ALTA", f"Se agregó {nuevo}")
 
     elif agregar == "encendido":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(201, 299, encendido)
-        encendido.append(["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        nuevo = ["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo]
+        encendido.append(nuevo)
+        registrar_movimiento("ALTA", f"Se agregó {nuevo}")
 
     elif agregar == "refrigeracion":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(301, 399, refrigeracion)
-        refrigeracion.append(["Refrigeración", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        nuevo = ["Refrigeración", codigo, autoparte, marca, modelo, stock, precio, stock_minimo]
+        refrigeracion.append(nuevo)
+        registrar_movimiento("ALTA", f"Se agregó {nuevo}")
 
     elif agregar == "suspension":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(401, 499, suspension)
-        suspension.append(
-            ["Suspensión", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        nuevo = ["Suspensión", codigo, autoparte, marca, modelo, stock, precio, stock_minimo]
+        suspension.append(nuevo)
+        registrar_movimiento("ALTA", f"Se agregó {nuevo}")
+    return codigo, autoparte, marca, modelo, stock, precio, stock_minimo

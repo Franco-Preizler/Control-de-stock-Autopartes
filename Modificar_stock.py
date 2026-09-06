@@ -11,7 +11,6 @@ def mostrar_info(cod, mat):
     return encontrada, fila_encontrada
     
 def modificar_info(modi):
-
     print("1.Producto, 2.Marca, 3.Modelo, 4.Stock, 5.Precio, 6.Stock Minimo")
 
     modificar = int(input("Ingrese numero para modificar: "))
@@ -19,6 +18,8 @@ def modificar_info(modi):
     while modificar < 1 or modificar > 6:
         print("ERROR - Ingrese un numero correctamente")
         modificar = int(input("Ingrese numero para modificar: "))
+
+    anterior = modi[2:8].copy()
 
     if modificar == 1:
         modificado = input("Ingrese Producto modificado: ")
@@ -44,8 +45,9 @@ def modificar_info(modi):
         modificado = int(input("Ingrese Stock minimo modificado: "))
         modi[7] = modificado
 
-def modificar_autoparte(motor, encendido, refrigeracion, suspension):
+    return anterior, modi[2:8].copy()
 
+def modificar_autoparte(motor, encendido, refrigeracion, suspension):
     codigo = int(input("Ingresar codigo de producto: "))
 
     while codigo < 101 or codigo > 499:
@@ -55,25 +57,21 @@ def modificar_autoparte(motor, encendido, refrigeracion, suspension):
     encontrada = False
     final = []
 
-    if codigo >= 101 and codigo <= 199:
+    if 101 <= codigo <= 199:
         encontrada, final = mostrar_info(codigo, motor)
-
-    elif codigo >= 201 and codigo <= 299:
+    elif 201 <= codigo <= 299:
         encontrada, final = mostrar_info(codigo, encendido)
-
-    elif codigo >= 301 and codigo <= 399:
+    elif 301 <= codigo <= 399:
         encontrada, final = mostrar_info(codigo, refrigeracion)
-
-    elif codigo >= 401 and codigo <= 499:
+    elif 401 <= codigo <= 499:
         encontrada, final = mostrar_info(codigo, suspension)
 
-    if encontrada == True:
-
-        modificar_info(final)
-
+    if encontrada:
+        anterior, nuevo = modificar_info(final)
         print("Dato modificado")
         print(final)
-
+        return True, codigo, anterior, nuevo
     else:
-
         print("Producto no encontrado")
+        return False, codigo, [], []
+
