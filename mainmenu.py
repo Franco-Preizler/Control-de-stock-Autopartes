@@ -3,7 +3,7 @@ from Modificar_stock import modificar_autoparte
 from eliminarap import eliminar_autoparte
 from Consulta_total import mostrar_autopartes
 from validar_stock_minimo import validar_stock_minimo
-from logs import mostrar_logs
+from logs import *
 motor = [
     ["Motor", 101, "Filtro de aceite", "BGK", "Volkswagen Polo", 6, 71000, 5],
     ["Motor", 102, "Correa de distribución", "BGK", "Peugeot 208", 7, 40000, 5],
