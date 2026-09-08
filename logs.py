@@ -1,15 +1,18 @@
-def mostrar_logs(alta,modificacion,baja):
+def mostrar_logs_alta(alta):
     print("""==================================
                            ALTA
-             ==================================""")
+    ==================================""")
     print(alta)
     print()
-    print("""==================================
-                           BAJA
-             ==================================""")
+def mostrar_logs_baja(baja):
+    print(
+    """==================================
+                      BAJA
+        ==================================""")
     print(baja)
     print()
+def mostrar_logs_modificacion(modificacion):
     print("""==================================
                         MODIFICACION
-             ==================================""")
+    ==================================""")
     print(modificacion)

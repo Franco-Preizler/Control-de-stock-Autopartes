@@ -1,4 +1,5 @@
 import random
+import re
 
 
 def datos(rango_minimo, rango_maximo, lista):
@@ -16,7 +17,7 @@ def datos(rango_minimo, rango_maximo, lista):
         codigo = random.randint(rango_minimo, rango_maximo)
 
     marca = input("Ingrese la marca de la autoparte: ")
-    while len(marca)<3:
+    while len(marca)<3 or re.search(r'\d', marca):
         print('marca invalida')
         marca = input("Ingrese la marca de la autoparte: ")
     modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
@@ -26,13 +27,13 @@ def datos(rango_minimo, rango_maximo, lista):
 
     precio = float(input("Ingrese el precio de la autoparte: "))
     while precio < 0:
-        precio = float(input("Ingrese un precio válido: "))
+        precio = float(input("Ingrese un precio valido: "))
 
     stock = int(input("Ingrese el stock existente: "))
     while stock < 0:
-        stock = int(input("Ingrese un stock válido: "))
+        stock = int(input("Ingrese un stock valido: "))
 
-    stock_minimo = int(input(f"Indique el stock mínimo del producto (mayor o igual a {stock}): "))
+    stock_minimo = int(input(f"Indique el stock minimo del producto (menor o igual a {stock}): "))
     while stock_minimo > stock:
         stock_minimo = int(input("Ingrese un stock minimo valido:"))
 
@@ -40,26 +41,30 @@ def datos(rango_minimo, rango_maximo, lista):
 
 
 def agregar_autoparte(motor,encendido,refrigeracion,suspension):
-
-    agregar = input("Ingrese la categoría de producto que quiere agregar: ").lower()
+    alta = []
+    agregar = input("Ingrese la categoria de producto que quiere agregar: ").lower()
     while agregar != 'motor' and agregar !='refrigeracion' and agregar != 'encendido' and agregar != 'suspension':
-        print("Categoría no válida.")
-        agregar = input("Ingrese la categoría de producto que quiere agregar: ").lower()
+        print("Categoria no valida.")
+        agregar = input("Ingrese la categoria de producto que quiere agregar: ").lower()
 
 
     if agregar == "motor":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(101, 199, motor)
         motor.append(["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        alta.append(["Motor",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "encendido":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(201, 299, encendido)
         encendido.append(["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        alta.append(["Encendido",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "refrigeracion":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(301, 399, refrigeracion)
-        refrigeracion.append(["Refrigeración", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        refrigeracion.append(["Refrigeracion", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        alta.append(["Refrigeracion",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "suspension":
         codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(401, 499, suspension)
-        suspension.append(
-            ["Suspensión", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        suspension.append(["Suspension", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        alta.append(["Suspension",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+    return motor,encendido,refrigeracion,suspension,alta

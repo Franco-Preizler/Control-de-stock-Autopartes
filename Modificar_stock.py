@@ -1,10 +1,12 @@
+import re
+
+
 def mostrar_info(cod, mat):
     encontrada = False
     fila_encontrada = []
 
     for fila in mat:
         if fila[1] == cod:
-            print(fila)
             fila_encontrada = fila
             encontrada = True
 
@@ -22,10 +24,16 @@ def modificar_info(modi):
 
     if modificar == 1:
         modificado = input("Ingrese Producto modificado: ")
+        while re.search(r'[^a-zA-Z0-9 ]', modificado):
+            print("Producto invalido")
+            modificado = input("Ingrese Producto modificado: ")
         modi[2] = modificado
 
     elif modificar == 2:
         modificado = input("Ingrese Marca modificada: ")
+        while re.search(r'\d', modificado):
+            print("Marca invalida")
+            modificado = input("Ingrese Marca modificada: ")
         modi[3] = modificado
 
     elif modificar == 3:
@@ -69,11 +77,13 @@ def modificar_autoparte(motor, encendido, refrigeracion, suspension):
 
     if encontrada == True:
 
+        antes = final.copy()
         modificar_info(final)
 
         print("Dato modificado")
-        print(final)
-
+        print("Antes:", antes)
+        print("Despues:", final)
     else:
 
         print("Producto no encontrado")
+    return final
