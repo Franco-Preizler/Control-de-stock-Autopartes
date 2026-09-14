@@ -42,10 +42,10 @@ def datos(rango_minimo, rango_maximo, lista):
 
 def agregar_autoparte(motor,encendido,refrigeracion,suspension):
     alta = []
-    agregar = input("Ingrese la categoria de producto que quiere agregar: ").lower()
+    agregar = input("Ingrese la categoria de producto que quiere agregar (Motor/Refrigeracion/Suspension/Encendido): ").lower()
     while agregar != 'motor' and agregar !='refrigeracion' and agregar != 'encendido' and agregar != 'suspension':
         print("Categoria no valida.")
-        agregar = input("Ingrese la categoria de producto que quiere agregar: ").lower()
+        agregar = input("Ingrese la categoria de producto que quiere agregar (Motor/Refrigeracion/Suspension/Encendido): ").lower()
 
 
     if agregar == "motor":
