@@ -42,7 +42,7 @@ suspension = [
     ["Suspension", 404, "Bieleta", "TRW", "Universal", 9, 5700, 5],
     ["Suspension", 405, "Bujes de suspension", "TRW", "Universal", 24, 5000, 5]
 ]
-option = "-1"
+option = -1
 while option!=0:
     print("⏤"*120)
     print(" "*45,"BIENVENIDO AL SISTEMA DE CONTROL DE STOCK DE AUTOPARTES PARTSCTRL\n")
@@ -130,3 +130,4 @@ while option!=0:
             
     else:
         print("\n > Gracias por utilizar el sistema de control de stock de autopartes")
+        option = 0
