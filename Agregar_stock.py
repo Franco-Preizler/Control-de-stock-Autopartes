@@ -11,7 +11,9 @@ def datos(rango_minimo, rango_maximo, lista):
 
     codigo = random.randint(rango_minimo, rango_maximo)
 
-    codigos = [producto[1] for producto in lista]
+    codigos = []
+    for producto in lista:
+        codigos.append(producto[1])
 
     while codigo in codigos:
         codigo = random.randint(rango_minimo, rango_maximo)
