@@ -66,18 +66,21 @@ while option!=0:
     
     if option == "1":
         m,e,r,s,a= agregar_autoparte(motor,encendido,refrigeracion,suspension)
-        alta+=1
-        historial_alta.extend(a)
+        if len(a) > 0:
+            alta+=1
+            historial_alta.extend(a)
 
 
     elif option == "2":
-         modi = modificar_autoparte(motor,encendido,refrigeracion,suspension )
-         modificacion+=1
-         historial_modificacion.append(modi.copy())
+        modi = modificar_autoparte(motor,encendido,refrigeracion,suspension)
+        if len(modi) > 0: 
+            modificacion+=1
+            historial_modificacion.append(modi.copy())
     elif option == "3":
         b = eliminar_autoparte(motor,encendido,refrigeracion,suspension)
-        baja+=1
-        historial_baja.extend(b)
+        if len(b) > 0:
+            baja+=1
+            historial_baja.extend(b)
     elif option == "4":
         h=mostrar_autopartes(
         motor,
