@@ -23,6 +23,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     baja.append(motor[i].copy())
                     del motor[i]
                     eliminado = True
+                    break
                     
                     
                     
@@ -32,6 +33,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     baja.append(encendido[i].copy())
                     del encendido[i]
                     eliminado = True
+                    break
                     
         elif 300 <= codigo < 400:
             for i in range(len(refrigeracion) - 1, -1, -1):
@@ -39,6 +41,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     baja.append(refrigeracion[i].copy())
                     del refrigeracion[i]
                     eliminado = True
+                    break
                 
                     
         elif 400 <= codigo < 500:
@@ -47,6 +50,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     baja.append(suspension[i].copy())
                     del suspension[i]
                     eliminado = True
+                    break
                 
                     
         if eliminado:
