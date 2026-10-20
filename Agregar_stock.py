@@ -36,7 +36,7 @@ def datos(rango_minimo, rango_maximo, lista):
         stock = int(input("Ingrese un stock valido: "))
 
     stock_minimo = int(input(f"Indique el stock minimo del producto (menor o igual a {stock}): "))
-    while stock_minimo > stock:
+    while stock_minimo < 0 or stock_minimo > stock:
         stock_minimo = int(input("Ingrese un stock minimo valido:"))
 
     return codigo, autoparte, marca, modelo, stock, precio, stock_minimo
@@ -51,22 +51,22 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
 
 
     if agregar == "motor":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(101, 199, motor)
+        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(100, 199, motor)
         motor.append(["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
         alta.append(["Motor",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "encendido":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(201, 299, encendido)
+        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(200, 299, encendido)
         encendido.append(["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
         alta.append(["Encendido",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "refrigeracion":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(301, 399, refrigeracion)
+        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(300, 399, refrigeracion)
         refrigeracion.append(["Refrigeracion", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
         alta.append(["Refrigeracion",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "suspension":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(401, 499, suspension)
+        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(400, 499, suspension)
         suspension.append(["Suspension", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
         alta.append(["Suspension",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
     return motor,encendido,refrigeracion,suspension,alta
