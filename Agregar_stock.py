@@ -14,10 +14,8 @@ def datos(rango_minimo, rango_maximo, lista):
     for producto in lista:
         codigos.append(producto[1])
     
-    if len(codigos) >= (rango_maximo - rango_minimo + 1):
-        print("ERROR: No hay códigos disponibles")
-    else:
-        codigo = random.randint(rango_minimo, rango_maximo)
+    codigo = random.randint(rango_minimo, rango_maximo)
+    
     while codigo in codigos:
         codigo = random.randint(rango_minimo, rango_maximo)
     marca = input("Ingrese la marca de la autoparte: ")
