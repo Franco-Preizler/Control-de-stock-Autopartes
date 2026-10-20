@@ -16,7 +16,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
         codigo = int(input("ingrese ID del autoparte a eliminar: "))
         eliminado = False
         
-        if 200 > codigo > 100:
+        if 100 <= codigo < 200:
             for i in range(len(motor) - 1, -1, -1):
                 if motor[i][1] == codigo:
                     print(motor[i])
