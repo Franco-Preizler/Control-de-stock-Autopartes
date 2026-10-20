@@ -31,13 +31,16 @@ def modificar_info(modi):
 
     elif modificar == 2:
         modificado = input("Ingrese Marca modificada: ")
-        while re.search(r'\d', modificado):
+        while len(modificado) < 3 or re.search(r'\d', modificado):
             print("Marca invalida")
             modificado = input("Ingrese Marca modificada: ")
         modi[3] = modificado
 
     elif modificar == 3:
         modificado = input("Ingrese Modelo modificado: ")
+        while len(modificado) < 3:
+            print("Modelo invalido")
+            modificado = input("Ingrese Modelo modificado: ")
         modi[4] = modificado
 
     elif modificar == 4:
