@@ -95,16 +95,16 @@ while option!=0:
             print("ERROR - Ingrese un codigo correctamente")
             codigo = int(input("Ingrese el codigo nuevamente: "))
 
-        if codigo >= 101 and codigo <= 199:
+        if codigo >= 100 and codigo < 200:
             encontrada, final = mostrar_info(codigo, motor)
 
-        elif codigo >= 201 and codigo <= 299:
+        elif codigo >= 200 and codigo < 300:
             encontrada, final = mostrar_info(codigo, encendido)
 
-        elif codigo >= 301 and codigo <= 399:
+        elif codigo >= 300 and codigo < 400:
             encontrada, final = mostrar_info(codigo, refrigeracion)
 
-        elif codigo >= 401 and codigo <= 499:
+        elif codigo >= 400 and codigo < 500:
             encontrada, final = mostrar_info(codigo, suspension)
 
         if encontrada == True:
