@@ -24,7 +24,7 @@ def modificar_info(modi):
 
     if modificar == 1:
         modificado = input("Ingrese Producto modificado: ")
-        while re.search(r'[^a-zA-Z0-9 ]', modificado):
+        while re.search(r'^\s*$|[^a-zA-Z0-9 ]', modificado)
             print("Producto invalido")
             modificado = input("Ingrese Producto modificado: ")
         modi[2] = modificado
