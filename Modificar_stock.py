@@ -65,7 +65,7 @@ def modificar_autoparte(motor, encendido, refrigeracion, suspension):
 
     codigo = int(input("Ingresar codigo de producto: "))
 
-    while codigo < 100 or codigo > 500:
+    while codigo < 100 or codigo > 499:
         print("ERROR - Ingresar codigo correctamente")
         codigo = int(input("Ingresar codigo de producto CORRECTAMENTE: "))
 
