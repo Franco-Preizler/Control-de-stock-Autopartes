@@ -91,7 +91,7 @@ while option!=0:
     elif option == "5":
         codigo = int(input("Ingrese el codigo de la autoparte: "))
 
-        while codigo < 101 or codigo > 499:
+        while codigo < 100 or codigo > 499:
             print("ERROR - Ingrese un codigo correctamente")
             codigo = int(input("Ingrese el codigo nuevamente: "))
 
