@@ -12,9 +12,10 @@ def datos(rango_minimo, rango_maximo, lista):
     codigo = random.randint(rango_minimo, rango_maximo)
 
     codigos = []
+
     for producto in lista:
         codigos.append(producto[1])
-
+    
     if len(codigos) >= (rango_maximo - rango_minimo + 1):
         print("ERROR: No hay códigos disponibles")
     else:
@@ -22,29 +23,28 @@ def datos(rango_minimo, rango_maximo, lista):
 
         while codigo in codigos:
             codigo = random.randint(rango_minimo, rango_maximo)
-
-    marca = input("Ingrese la marca de la autoparte: ")
-    while len(marca)<3 or re.search(r'\d', marca):
-        print('marca invalida')
         marca = input("Ingrese la marca de la autoparte: ")
-    modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
-    while len(modelo)<3:
-        print('modelo ivalido')
+        while len(marca)<3 or re.search(r'\d', marca):
+            print('marca invalida')
+            marca = input("Ingrese la marca de la autoparte: ")
         modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
-
-    precio = float(input("Ingrese el precio de la autoparte: "))
-    while precio < 0:
-        precio = float(input("Ingrese un precio valido: "))
-
-    stock = int(input("Ingrese el stock existente: "))
-    while stock < 0:
-        stock = int(input("Ingrese un stock valido: "))
-
-    stock_minimo = int(input(f"Indique el stock minimo del producto (menor o igual a {stock}): "))
-    while stock_minimo < 0 or stock_minimo > stock:
-        stock_minimo = int(input("Ingrese un stock minimo valido:"))
-
-    return codigo, autoparte, marca, modelo, stock, precio, stock_minimo
+        while len(modelo)<3:
+            print('modelo ivalido')
+            modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
+    
+        precio = float(input("Ingrese el precio de la autoparte: "))
+        while precio < 0:
+            precio = float(input("Ingrese un precio valido: "))
+    
+        stock = int(input("Ingrese el stock existente: "))
+        while stock < 0:
+            stock = int(input("Ingrese un stock valido: "))
+    
+        stock_minimo = int(input(f"Indique el stock minimo del producto (menor o igual a {stock}): "))
+        while stock_minimo < 0 or stock_minimo > stock:
+            stock_minimo = int(input("Ingrese un stock minimo valido:"))
+    
+        return codigo, autoparte, marca, modelo, stock, precio, stock_minimo
 
 
 def agregar_autoparte(motor,encendido,refrigeracion,suspension):
