@@ -56,22 +56,34 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
 
 
     if agregar == "motor":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(100, 199, motor)
-        motor.append(["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
-        alta.append(["Motor",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        if len(motor) >= 100:
+            print("ERROR: No hay códigos disponibles")
+        else:
+            codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(100, 199, motor)
+            motor.append(["Motor", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+            alta.append(["Motor",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "encendido":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(200, 299, encendido)
-        encendido.append(["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
-        alta.append(["Encendido",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        if len(motor) >= 200:
+            print("ERROR: No hay códigos disponibles")
+        else:
+            codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(200, 299, encendido)
+            encendido.append(["Encendido", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+            alta.append(["Encendido",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "refrigeracion":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(300, 399, refrigeracion)
-        refrigeracion.append(["Refrigeracion", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
-        alta.append(["Refrigeracion",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        if len(motor) >= 300:
+            print("ERROR: No hay códigos disponibles")
+        else:
+            codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(300, 399, refrigeracion)
+            refrigeracion.append(["Refrigeracion", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+            alta.append(["Refrigeracion",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "suspension":
-        codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(400, 499, suspension)
-        suspension.append(["Suspension", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
-        alta.append(["Suspension",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+        if len(motor) >= 400:
+            print("ERROR: No hay códigos disponibles")
+        else:
+            codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(400, 499, suspension)
+            suspension.append(["Suspension", codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
+            alta.append(["Suspension",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
     return motor,encendido,refrigeracion,suspension,alta
