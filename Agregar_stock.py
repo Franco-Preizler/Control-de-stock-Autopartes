@@ -19,7 +19,7 @@ def datos(rango_minimo, rango_maximo, lista):
     while codigo in codigos:
         codigo = random.randint(rango_minimo, rango_maximo)
     marca = input("Ingrese la marca de la autoparte: ")
-    while len(marca)<3 or re.search(r'\d', marca):
+    while len(marca) < 3 or re.search(r'^\s*$|\d', marca):
         print('marca invalida')
         marca = input("Ingrese la marca de la autoparte: ")
     modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
