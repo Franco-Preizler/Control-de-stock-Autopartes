@@ -56,7 +56,7 @@ def modificar_info(modi):
 
     else:
         modificado = int(input("Ingrese Stock minimo modificado: "))
-        while modificado < 0:
+        while modificado < 0 or modificado > modi[5]:
             print("ERROR - El stock minimo no puede ser negativo")
             modificado = int(input("Ingrese Stock minimo modificado: "))
         modi[7] = modificado
