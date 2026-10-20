@@ -9,8 +9,6 @@ def datos(rango_minimo, rango_maximo, lista):
         autoparte = input("Ingrese la autoparte que quiere agregar: ")
 
 
-    codigo = random.randint(rango_minimo, rango_maximo)
-
     codigos = []
 
     for producto in lista:
@@ -20,7 +18,6 @@ def datos(rango_minimo, rango_maximo, lista):
         print("ERROR: No hay códigos disponibles")
     else:
         codigo = random.randint(rango_minimo, rango_maximo)
-
         while codigo in codigos:
             codigo = random.randint(rango_minimo, rango_maximo)
         marca = input("Ingrese la marca de la autoparte: ")
@@ -64,7 +61,7 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
             alta.append(["Motor",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "encendido":
-        if len(motor) >= 200:
+        if len(encendido) >= 100:
             print("ERROR: No hay códigos disponibles")
         else:
             codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(200, 299, encendido)
@@ -72,7 +69,7 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
             alta.append(["Encendido",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "refrigeracion":
-        if len(motor) >= 300:
+        if len(refrigeracion) >= 100:
             print("ERROR: No hay códigos disponibles")
         else:
             codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(300, 399, refrigeracion)
@@ -80,7 +77,7 @@ def agregar_autoparte(motor,encendido,refrigeracion,suspension):
             alta.append(["Refrigeracion",codigo, autoparte, marca, modelo, stock, precio, stock_minimo])
 
     elif agregar == "suspension":
-        if len(motor) >= 400:
+        if len(suspension) >= 100:
             print("ERROR: No hay códigos disponibles")
         else:
             codigo, autoparte, marca, modelo, stock, precio, stock_minimo = datos(400, 499, suspension)
