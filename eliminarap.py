@@ -67,6 +67,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
         categoria = pedir_entero("ingrese la categoria: ", 1, 4)
             
         nombre = input("ingrese nombre de la autoparte: ").lower()
+        codigo = pedir_entero("Ingrese el codigo de la autoparte a eliminar: ", 100, 499)
         eliminado = False
         
         if categoria == 1:
