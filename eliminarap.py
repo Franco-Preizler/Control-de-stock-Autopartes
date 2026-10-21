@@ -11,9 +11,6 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
             * Ingrese 2 para eliminar una autoparte por nombre""")
 
     opcion = pedir_entero("Ingrese la opcion para continuar: ", 1, 2)
-    while opcion != 1 and opcion != 2:
-        print("\n > La opcion ingresada no es correcta")
-        opcion = int(input("\nIngrese un valor correcto entre las opciones (1 a 2) para continuar: "))
     
     if opcion == 1:
         codigo = pedir_entero("ingrese ID del autoparte a eliminar: ", 100, 499)
@@ -68,9 +65,6 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
 * 3. Refrigeracion
 * 4. Suspension""")
         categoria = pedir_entero("ingrese la categoria: ", 1, 4)
-        while categoria < 1 or categoria > 4:
-            print("Error - opcion invalida. Ingrese una opcion entre el 1 y el 4")
-            categoria = int(input("ingrese la categoria: "))
             
         nombre = input("ingrese nombre de la autoparte: ").lower()
         eliminado = False
