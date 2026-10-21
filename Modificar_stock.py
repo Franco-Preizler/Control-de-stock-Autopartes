@@ -18,7 +18,7 @@ def modificar_info(modi):
 
     print("1.Producto, 2.Marca, 3.Modelo, 4.Stock, 5.Precio, 6.Stock Minimo")
 
-    modificar = int(input("Ingrese numero para modificar: "))
+    modificar = pedir_entero("Ingrese numero para modificar: ", 1, 6)
 
     while modificar < 1 or modificar > 6:
         print("ERROR - Ingrese un numero correctamente")
@@ -46,21 +46,21 @@ def modificar_info(modi):
         modi[4] = modificado
 
     elif modificar == 4:
-        modificado = int(input("Ingrese Stock modificado: "))
+        modificado = pedir_entero("Ingrese Stock modificado: ", 0)
         while modificado < 0:
             print("El stock no puede ser negativo")
             modificado = int(input("Ingrese Stock modificado: "))
         modi[5] = modificado
 
     elif modificar == 5:
-        modificado = float(input("Ingrese Precio modificado: "))
+        modificado = pedir_decimal("Ingrese Precio modificado: ", 0)
         while modificado < 0:
             print("ERROR - El precio no puede ser negativo")
             modificado = float(input("Ingrese Precio modificado: "))
         modi[6] = modificado
 
     else:
-        modificado = int(input("Ingrese Stock minimo modificado: "))
+        modificado = pedir_entero("Ingrese Stock minimo modificado: ", 0, modi[5])
         while modificado < 0 or modificado > modi[5]:
             print("ERROR - El stock minimo no puede ser negativo")
             modificado = int(input("Ingrese Stock minimo modificado: "))
@@ -68,7 +68,7 @@ def modificar_info(modi):
 
 def modificar_autoparte(motor, encendido, refrigeracion, suspension):
 
-    codigo = int(input("Ingresar codigo de producto: "))
+    codigo = pedir_entero("Ingresar codigo de producto: ", 100, 499)
 
     while codigo < 100 or codigo > 499:
         print("ERROR - Ingresar codigo correctamente")
