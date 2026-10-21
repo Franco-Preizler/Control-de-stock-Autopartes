@@ -1,3 +1,6 @@
+from Validaciones import pedir_entero
+
+
 def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
     baja = []
     print("⏤"*120)
