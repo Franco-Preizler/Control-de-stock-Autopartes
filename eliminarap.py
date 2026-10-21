@@ -71,7 +71,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
         
         if categoria == 1:
             for i in range(len(motor) - 1, -1, -1):
-                if motor[i][2].lower() == nombre:
+                if motor[i][1] == codigo and motor[i][2].lower() == nombre:
                     baja.append(motor[i].copy())
                     del motor[i]
                     eliminado = True
@@ -79,7 +79,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     
         elif categoria == 2:
             for i in range(len(encendido) - 1, -1, -1):
-                if encendido[i][2].lower() == nombre:
+                if encendido[i][1] == codigo and encendido[i][2].lower() == nombre:
                     baja.append(encendido[i].copy())
                     del encendido[i]
                     eliminado = True
@@ -87,7 +87,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     
         elif categoria == 3:
             for i in range(len(refrigeracion) - 1, -1, -1):
-                if refrigeracion[i][2].lower() == nombre:
+                if refrigeracion[i][1] == codigo and refrigeracion[i][2].lower() == nombre:
                     baja.append(refrigeracion[i].copy())
                     del refrigeracion[i]
                     eliminado = True
@@ -95,7 +95,7 @@ def eliminar_autoparte(motor,encendido,refrigeracion,suspension):
                     
         elif categoria == 4:
             for i in range(len(suspension) - 1, -1, -1):
-                if suspension[i][2].lower() == nombre:
+                if suspension[i][1] == codigo and  suspension[i][2].lower() == nombre:
                     baja.append(suspension[i].copy())
                     del suspension[i]
                     eliminado = True
