@@ -93,11 +93,7 @@ while option!=0:
         
 
     elif option == "5":
-        codigo = int(input("Ingrese el codigo de la autoparte: "))
-
-        while codigo < 100 or codigo > 499:
-            print("ERROR - Ingrese un codigo correctamente")
-            codigo = int(input("Ingrese el codigo nuevamente: "))
+        codigo = pedir_entero("Ingrese el codigo de la autoparte: ",100, 499)
 
         if codigo >= 100 and codigo < 200:
             encontrada, final = mostrar_info(codigo, motor)
