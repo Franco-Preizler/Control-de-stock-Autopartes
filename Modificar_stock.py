@@ -1,4 +1,6 @@
 import re
+from Validaciones import pedir_entero, pedir_decimal
+
 
 
 def mostrar_info(cod, mat):
