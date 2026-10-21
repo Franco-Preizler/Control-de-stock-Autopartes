@@ -4,6 +4,7 @@ from eliminarap import eliminar_autoparte
 from Consulta_total import mostrar_autopartes
 from validar_stock_minimo import validar_stock_minimo
 from logs import *
+from Validaciones import pedir_entero
 
 alta=0
 baja=0
