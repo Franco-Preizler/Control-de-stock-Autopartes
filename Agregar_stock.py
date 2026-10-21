@@ -28,17 +28,9 @@ def datos(rango_minimo, rango_maximo, lista):
         print('modelo ivalido')
         modelo = input("Ingrese el modelo al que pertenece la autoparte: ")
 
-    precio = float(input("Ingrese el precio de la autoparte: "))
-    while precio < 0:
-        precio = float(input("Ingrese un precio valido: "))
-
-    stock = int(input("Ingrese el stock existente: "))
-    while stock < 0:
-        stock = int(input("Ingrese un stock valido: "))
-
-    stock_minimo = int(input(f"Indique el stock minimo del producto (menor o igual a {stock}): "))
-    while stock_minimo < 0 or stock_minimo > stock:
-        stock_minimo = int(input("Ingrese un stock minimo valido:"))
+    precio = pedir_decimal("Ingrese el precio de la autoparte: ", 0)
+    stock = pedir_entero("Ingrese el stock existente: ", 0)
+    stock_minimo = pedir_entero(f"Indique el stock minimo del producto (menor o igual a {stock}): ", 0, stock)
 
     return codigo, autoparte, marca, modelo, stock, precio, stock_minimo
 
