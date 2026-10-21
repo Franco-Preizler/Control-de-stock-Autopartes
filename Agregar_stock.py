@@ -1,5 +1,6 @@
 import random
 import re
+from Validaciones import pedir_entero, pedir_decimal
 
 
 def datos(rango_minimo, rango_maximo, lista):
