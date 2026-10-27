@@ -1,3 +1,4 @@
+import re
 def pedir_entero(mensaje, minimo=None, maximo=None):
     while True:
         try:
