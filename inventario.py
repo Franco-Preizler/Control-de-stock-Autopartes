@@ -1,15 +1,3 @@
-"""Altas, bajas, modificaciones y consultas puntuales sobre el inventario.
-
-El inventario se representa como un diccionario: cada categoria (Motor,
-Encendido, Refrigeracion, Suspension) es una clave, y su valor es la lista
-de autopartes de esa categoria. Cada autoparte es una lista:
-[codigo, nombre, marca, modelo, stock, precio, stock_minimo].
-
-Antes, estos datos se manejaban como 4 listas sueltas (motor, encendido,
-refrigeracion, suspension) que había que pasar como 4 parametros separados
-a cada funcion del sistema. Usar un unico diccionario evita esa dependencia
-de estructuras compartidas y reduce la repeticion de codigo por categoria.
-"""
 import random
 
 from Validaciones import pedir_entero, pedir_decimal, pedir_texto
