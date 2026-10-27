@@ -28,3 +28,15 @@ def pedir_decimal(mensaje, minimo=None):
             print(f"ERROR - El valor no puede ser menor a {minimo}.")
         else:
             return valor
+
+
+def pedir_texto(mensaje, longitud_minima=1, patron_invalido=None, mensaje_error="Valor invalido"):
+    while True:
+        valor = input(mensaje)
+        if len(valor) < longitud_minima:
+            print(mensaje_error)
+            continue
+        if patron_invalido and re.search(patron_invalido, valor):
+            print(mensaje_error)
+            continue
+        return valor
