@@ -163,3 +163,4 @@ def eliminar_autoparte(inventario):
         print("Autoparte eliminada correctamente" if eliminado else "No se encontro ninguna autoparte con ese nombre.")
 
     return baja
+
