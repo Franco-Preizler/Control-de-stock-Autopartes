@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# archivos que crean las pruebas unitarias
+prueba_inventario.json
+prueba_movimientos.txt

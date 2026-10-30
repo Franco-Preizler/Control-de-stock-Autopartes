@@ -1,58 +1,32 @@
+"""Programa principal: muestra el menu y coordina las operaciones, los reportes y el guardado."""
 from inventario import (
     agregar_autoparte,
     modificar_autoparte,
     eliminar_autoparte,
+    actualizar_stock,
     mostrar_info,
-    inventario_vacio,
+    inventario_inicial,
 )
 from reportes import (
     listar_inventario,
     validar_stock_minimo,
-    mostrar_logs_alta,
-    mostrar_logs_baja,
-    mostrar_logs_modificacion,
+    mostrar_producto,
+    resumen_por_categoria,
+    mostrar_resumen,
+    mostrar_movimientos,
+)
+from archivos import (
+    cargar_inventario,
+    guardar_inventario,
+    registrar_movimiento,
+    leer_movimientos,
 )
 from Validaciones import pedir_entero
 
-alta = 0
-baja = 0
-modificacion = 0
-historial_alta = []
-historial_baja = []
-historial_modificacion = []
+OPCIONES_MENU = ("0", "1", "2", "3", "4", "5", "6", "7", "8")
 
-inventario = inventario_vacio()
-inventario["Motor"] = [
-    [101, "Filtro de aceite", "BGK", "Volkswagen Polo", 6, 71000, 5],
-    [102, "Correa de distribucion", "BGK", "Peugeot 208", 7, 40000, 5],
-    [103, "Bomba de aceite", "BGK", "Volkswagen Polo", 9, 43000, 5],
-    [104, "Junta de culata", "BGK", "Volkswagen Polo", 11, 59000, 5],
-    [105, "Piston", "BGK", "Volkswagen Polo", 17, 56000, 5],
-]
-inventario["Encendido"] = [
-    [201, "Bujia", "NGK", "Universal", 19, 18900, 5],
-    [202, "Bobina de encendido", "Bosch", "Universal", 25, 34800, 5],
-    [203, "Cables de bujia", "Bosch", "Universal", 30, 23600, 5],
-    [204, "Distribuidor", "Bosch", "Universal", 13, 23000, 5],
-    [205, "Motor de arranque", "Bosch", "Universal", 9, 32000, 5],
-]
-inventario["Refrigeracion"] = [
-    [301, "Radiador", "Valeo", "Universal", 17, 15900, 5],
-    [302, "Bomba de agua", "SKF", "Universal", 24, 1090, 5],
-    [303, "Termostato", "Gates", "Universal", 70, 9500, 5],
-    [304, "Electroventilador", "Valeo", "Universal", 45, 9200, 5],
-    [305, "Manguera de radiador", "Gates", "Universal", 80, 8900, 5],
-]
-inventario["Suspension"] = [
-    [401, "Amortiguador delantero", "Monroe", "Universal", 22, 4500, 5],
-    [402, "Amortiguador trasero", "Monroe", "Universal", 25, 4800, 5],
-    [403, "Rotula", "TRW", "Universal", 28, 5800, 5],
-    [404, "Bieleta", "TRW", "Universal", 9, 5700, 5],
-    [405, "Bujes de suspension", "TRW", "Universal", 24, 5000, 5],
-]
 
-option = -1
-while option != 0:
+def mostrar_menu():
     print("⏤" * 120)
     print(" " * 45, "BIENVENIDO AL SISTEMA DE CONTROL DE STOCK DE AUTOPARTES PARTSCTRL\n")
     print("⏤" * 120)
@@ -63,62 +37,77 @@ while option != 0:
             * Ingrese 4 para mostrar el listado de autopartes
             * Ingrese 5 para consultar autopartes
             * Ingrese 6 para ver movimiento de stock de autopartes
+            * Ingrese 7 para registrar entrada o salida de unidades
+            * Ingrese 8 para ver el resumen por categoria
 
             * Para finalizar ingrese 0 por teclado  """)
 
-    option = input("\nIngrese la opcion para continuar: ")
 
-    while option not in ("0", "1", "2", "3", "4", "5", "6"):
-        print("\n > La opcion ingresada no es correcta")
-        option = input("\nIngrese un valor correcto entre las opciones (0 a 6) para continuar: ")
-
-    if option == "1":
-        a = agregar_autoparte(inventario)
-        if a:
-            alta += 1
-            historial_alta.append(a)
-
-    elif option == "2":
-        modi = modificar_autoparte(inventario)
-        if modi:
-            modificacion += 1
-            historial_modificacion.append(modi)
-
-    elif option == "3":
-        b = eliminar_autoparte(inventario)
-        if b:
-            baja += 1
-            historial_baja.extend(b)
-
-    elif option == "4":
-        listar_inventario(inventario)
-        validar_stock_minimo(inventario)
-
-    elif option == "5":
-        codigo = pedir_entero("Ingrese el codigo de la autoparte: ", 100, 499)
-        encontrada, final = mostrar_info(codigo, inventario)
-
-        if encontrada:
-            print("\nAutoparte encontrada:")
-            print(final)
-        else:
-            print("\nProducto no encontrado")
-
-    elif option == "6":
-        if alta > 0:
-            mostrar_logs_alta(historial_alta)
-        else:
-            print("No se dieron de alta productos")
-        if modificacion > 0:
-            mostrar_logs_modificacion(historial_modificacion)
-        else:
-            print('No se registraron modificaciones')
-        if baja > 0:
-            mostrar_logs_baja(historial_baja)
-        else:
-            print('No se dieron de baja productos')
-
+def iniciar_inventario():
+    """Recupera el inventario guardado. Si no hay archivo (o esta danado) usa los datos de ejemplo."""
+    inventario = cargar_inventario()
+    if inventario is None:
+        print("Se carga el inventario inicial de ejemplo.")
+        inventario = inventario_inicial()
+        guardar_inventario(inventario)
     else:
-        print("\n > Gracias por utilizar el sistema de control de stock de autopartes")
-        option = 0
+        print("Inventario recuperado de inventario.json")
+    return inventario
 
+
+def guardar_cambios(inventario, resultado):
+    """Si la operacion se realizo, guarda el inventario (JSON) y registra el movimiento (TXT).
+    resultado es una tupla (tipo, categoria, producto, detalle) o None si se cancelo."""
+    if resultado is None:
+        return
+    tipo, categoria, producto, detalle = resultado
+    guardar_inventario(inventario)
+    registrar_movimiento(tipo, categoria, producto, detalle)
+
+
+def consultar_autoparte(inventario):
+    codigo = pedir_entero("Ingrese el codigo de la autoparte: ", 100, 499)
+    encontrada, producto = mostrar_info(codigo, inventario)
+
+    if encontrada:
+        print("\nAutoparte encontrada:")
+        mostrar_producto(producto)
+    else:
+        print("\nProducto no encontrado")
+
+
+def main():
+    inventario = iniciar_inventario()
+
+    opcion = ""
+    while opcion != "0":
+        mostrar_menu()
+        opcion = input("\nIngrese la opcion para continuar: ").strip()
+
+        while opcion not in OPCIONES_MENU:
+            print("\n > La opcion ingresada no es correcta")
+            opcion = input("\nIngrese un valor correcto entre las opciones (0 a 8) para continuar: ").strip()
+
+        if opcion == "1":
+            guardar_cambios(inventario, agregar_autoparte(inventario))
+        elif opcion == "2":
+            guardar_cambios(inventario, modificar_autoparte(inventario))
+        elif opcion == "3":
+            guardar_cambios(inventario, eliminar_autoparte(inventario))
+        elif opcion == "4":
+            listar_inventario(inventario)
+            validar_stock_minimo(inventario)
+        elif opcion == "5":
+            consultar_autoparte(inventario)
+        elif opcion == "6":
+            mostrar_movimientos(leer_movimientos())
+        elif opcion == "7":
+            guardar_cambios(inventario, actualizar_stock(inventario))
+        elif opcion == "8":
+            mostrar_resumen(resumen_por_categoria(inventario))
+
+    print("\n > Gracias por utilizar el sistema de control de stock de autopartes")
+
+
+if __name__ == "__main__":
+    main()
